@@ -23,10 +23,10 @@
 
 // Questão 1
 
-// let idadeUsuario = Number(prompt("Qual é a sua idade?"))
-// let idadeAmigo = Number(prompt("Qual é a a idade do seu melhor amigo ?"))
-// let resultado = idadeUsuario > idadeAmigo
-// console.log( resultado, idadeUsuario - idadeAmigo )
+let idadeUsuario = Number(prompt("Qual é a sua idade?"))
+let idadeAmigo = Number(prompt("Qual é a a idade do seu melhor amigo ?"))
+let resultado = idadeUsuario > idadeAmigo
+console.log( resultado, idadeUsuario - idadeAmigo )
 
 //Questão 2
 
