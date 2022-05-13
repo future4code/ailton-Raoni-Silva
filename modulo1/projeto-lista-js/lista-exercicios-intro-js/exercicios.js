@@ -120,22 +120,24 @@ function trocaPrimeiroEUltimo(array) {
   // c = a
   // a = b
   // b = c
-  
-  
+
   // console.log("O novo valor de a é", a) // O novo valor de a é 25
   // console.log("O novo valor de b é", b) // O novo valor de b é 10
 
-let inicio = array[0]
-let fim = array[array.length -1]
-array[0] = fim
-array[array.length -1] = inicio
+  let inicio = array[0];
+  let fim = array[array.length - 1];
+  array[0] = fim;
+  array[array.length - 1] = inicio;
 
-return array
+  return array;
 }
 
 // EXERCÍCIO 12
 function checaIgualdadeDesconsiderandoCase(string1, string2) {
   // implemente sua lógica aqui
+  const stringIguais = string1.toUpperCase() === string2.toUpperCase();
+
+  return stringIguais;
 }
 
 // EXERCÍCIO 13
