@@ -143,6 +143,33 @@ function checaIgualdadeDesconsiderandoCase(string1, string2) {
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
   // implemente sua lógica aqui
+
+  const anoAtual = Number(prompt('Em que ano estamos?'));
+
+  const anoDeNascimento = Number(prompt('Em que ano você nasceu?'));
+
+  const anoDeEmissaoId = Number(prompt('Em que ano seu RG foi emitido?'));
+
+  if (anoAtual - anoDeNascimento <= 20 && anoAtual - anoDeEmissaoId >= 5) {
+    console.log(true);
+    return true;
+  }
+
+  if (
+    anoAtual - anoDeNascimento >= 20 &&
+    anoAtual - anoDeNascimento <= 50 &&
+    anoAtual - anoDeEmissaoId >= 10
+  ) {
+    console.log(true);
+    return true;
+  }
+
+  if (anoAtual - anoDeNascimento > 50 && anoAtual - anoDeEmissaoId >= 15) {
+    console.log(true);
+    return true;
+  }
+  console.log(false);
+  return false;
 }
 
 // EXERCÍCIO 14
