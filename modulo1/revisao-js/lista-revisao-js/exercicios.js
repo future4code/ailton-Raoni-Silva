@@ -38,13 +38,11 @@ function retornaNumerosParesElevadosADois(array) {
   let novaArray = [];
   for (let numero of array) {
     if (numero % 2 === 0) {
-    novaArray.push(numero **2);
+      novaArray.push(numero ** 2);
+    }
   }
-  }
-  return novaArray 
+  return novaArray;
 }
-
-
 
 // EXERCÍCIO 06
 
@@ -96,14 +94,13 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-let arrayOrdenada = 
-  array.sort((a, b) => {
-  if (a > b) return 1;
-  if (a < b) return -1;
-  return 0;
-});
-let novaArray = [arrayOrdenada[array.length - 2], arrayOrdenada[1]]
-return novaArray
+  let arrayOrdenada = array.sort((a, b) => {
+    if (a > b) return 1;
+    if (a < b) return -1;
+    return 0;
+  });
+  let novaArray = [arrayOrdenada[array.length - 2], arrayOrdenada[1]];
+  return novaArray;
 }
 
 // EXERCÍCIO 11
@@ -112,32 +109,56 @@ function retornaChamadaDeFilme(filme) {
     nome: "O Diabo Veste Prada",
     ano: 2006,
     diretor: "David Frankel",
-    atores: ["Meryl Streep", " Anne Hathaway", " Emily Blunt", " Stanley Tucci"]
+    atores: [
+      "Meryl Streep",
+      " Anne Hathaway",
+      " Emily Blunt",
+      " Stanley Tucci",
+    ],
   };
-  return `Venha assistir ao filme ${filmeODiabo.nome}, de ${filmeODiabo.ano}, dirigido por ${filmeODiabo.diretor} e estrelado por ${[filmeODiabo.atores]}.`;
+  return `Venha assistir ao filme ${filmeODiabo.nome}, de ${
+    filmeODiabo.ano
+  }, dirigido por ${filmeODiabo.diretor} e estrelado por ${[
+    filmeODiabo.atores,
+  ]}.`;
 }
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
-
-  
   return {
     ...pessoa,
-     nome:"ANÔNIMO"
-  }
+    nome: "ANÔNIMO",
+  };
 }
-
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-  
+  let pessoasAutorizadas = [];
+  pessoas.map((pessoa) => {
+    if (pessoa.idade > 14 && pessoa.altura >= 1.5 && pessoa.idade < 60) {
+    pessoasAutorizadas.push(pessoa)
+    }
+  });
+  return pessoasAutorizadas
 }
 
 // EXERCÍCIO 13B
-function retornaPessoasNaoAutorizadas(pessoas) {}
+function retornaPessoasNaoAutorizadas(pessoas) {
+let pessoasNaoAutorizadas = []
+pessoas.map((pessoa) => {
+  if (pessoa.idade <= 14 || pessoa.altura < 1.5 || pessoa.idade > 60) {
+  pessoasNaoAutorizadas.push(pessoa)
+  }
+
+})
+return pessoasNaoAutorizadas
+}
 
 // EXERCÍCIO 14
-function retornaContasComSaldoAtualizado(contas) {}
+function retornaContasComSaldoAtualizado(contas) {
+  conta
+
+}
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {}
