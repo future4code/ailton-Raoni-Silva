@@ -45,7 +45,7 @@ div img {
   font-size: 20px;
   color: white;
   position: relative;
-  top: -400px;
+  top: -250px;
   left: 25px;
   right: 100px;
   bottom: 100px;
@@ -106,7 +106,8 @@ div:last-child {
 }
 
 table {
-  width: 60%;
+    text-align: center;
+    width: 60%;
 }
 
 td button {
