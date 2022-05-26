@@ -42,6 +42,8 @@ div > p:first-child {
 }
 
 div img {
+    width: 60px;
+    height: 60px;
   
 }
 
@@ -70,6 +72,7 @@ div img {
 
 .icone {
   width: 20px;
+  height: 20px;
 }
 
 /** 
@@ -116,6 +119,7 @@ div:last-child {
 table {
     text-align: center;
     width: 60%;
+    margin: 0 auto;
 }
 
 td button {
@@ -124,6 +128,7 @@ td button {
   height: 30px;
   border-radius: 5px;
   color: black;
+ 
 }
 td button:hover{
     background-color:#f0c91c
@@ -147,6 +152,8 @@ color: rgb(248, 248, 248);
   border-radius: 5px;
   font-size: 10px;
   color: black;
+ margin-left: 650px;
+ margin-top: 150px;
 }
 
 #back-button:hover {
