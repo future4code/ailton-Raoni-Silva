@@ -1,48 +1,138 @@
 * {
   margin: 0;
   padding: 0;
-}
-
-* {
   font-family: sans-serif;
+  max-width: 100%;
 }
 
-* {
+body {
+  height: 100vh;
+}
+
+a {
   text-decoration: none;
 }
-.topo-pagina {
-  display: inline;
+
+/* .all-content {
+  position: absolute;
+} */
+
+header {
+  height: 200px;
+}
+
+.logo {
   margin: 20px;
   width: 8%;
   padding-top: 20px;
 }
 
-.botoes-navegacao {
+.menu {
   position: relative;
   text-align: right;
   margin: 100px;
+  margin-bottom: 0;
   top: -190px;
 }
 
-.barra-sobre-mim {
-  position: relative;
-  width: 50%;
-  position: relative;
-  top: -200px;
-  left: 270px;
-  right: 100px;
-  bottom: 100px;
-  
+.elementos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
 }
 
-.rodape{
-    display: inline;
-    position: relative;
-    width: 90%;
-    position: relative;
-    top: 110px;
-    left: 36px;
-    right: 100px;
-    bottom: 300px;
+.sobre-mim-titulo {
+  width: 50%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
 
+.descricao {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.icon-tabela {
+  width: 4%;
+
+  padding-bottom: 10px;
+}
+
+.rodape {
+  margin-top: 100px;
+}
+
+h1 {
+  margin-left: 40px;
+  color: white;
+  background-color: black;
+  width: 500px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+input {
+  width: 350px;
+}
+
+.box-faleconosco {
+  padding-top: 20px;
+  margin-left: 40px;
+}
+
+#mensagem {
+  height: 350px;
+}
+
+button {
+  border-radius: 10px;
+  cursor: pointer;
+  border: 0;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 20px;
+  width: 90px;
+  margin-left: 350px;
+  background-color: yellowgreen;
+  color: white;
+}
+button:hover {
+  background-color: seagreen;
+}
+button:active {
+  color: black;
+  background-color: darkolivegreen;
+}
+
+.portfolio-titulo {
+  width: 50%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.icon-programa {
+  width: 250px;
+  height: 145px;
+  margin-bottom: 50px;
+}
+.descricao-port {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.icon-programa2 {
+  width: 120px;
+
+  margin-bottom: 50px;
 }
