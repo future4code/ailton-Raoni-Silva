@@ -13,10 +13,6 @@ a {
   text-decoration: none;
 }
 
-/* .all-content {
-  position: absolute;
-} */
-
 header {
   height: 200px;
 }
@@ -62,12 +58,37 @@ header {
 
 .icon-tabela {
   width: 4%;
-
   padding-bottom: 10px;
 }
 
 .rodape {
   margin-top: 100px;
+}
+
+.redes {
+  width: 65px;
+  display: inline;
+  padding-left: 1160px;
+  position: relative;
+  top: 286px;
+}
+.github {
+  width: 47px;
+  padding-left: 1245px;
+  position: relative;
+  top: 235px;
+  margin: 0;
+  border: 0ch;
+}
+
+.linkedin{
+  width: 47px;
+  padding-left: 50px;
+  position: relative;
+  top: 235px;
+  margin: 0;
+  border: 0ch;
+background-color: white;
 }
 
 h1 {
