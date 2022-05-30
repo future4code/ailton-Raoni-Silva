@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: mediumvioletred;
+}
+
+.bolinho {
+  height: 20px;
+  flex: 0 1 auto;
+}
+
+.confeitaria {
+  flex: 1 1 auto;
+  margin-left: 15px;
+}
+
+.login {
+  padding: 10px;
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.caminhos {
+  background-color: #f2d0e0;
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.navegacao {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 15px;
+  
+  
+}
+.icons {
+  width: 4%;
+  flex: 1 1 auto;
+  margin-left: 5px;
+}
+.texto {
+  flex: 1 1 80%;
+}
+.setinha {
+  width: 25px;
+  flex: 1 1 ;
+  
+}
+
+.bolo {
+  border: 1px solid black;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+  border: 0;
+  justify-content: space;
+  margin: 10px;
+}
+
+.section2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 0;
+  margin: 25px;
+}
+
+footer {
+  display: flex;
+  background-color: mediumvioletred;
+  height: 6vh;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+}
+h5 {
+  text-align: center;
+  padding-top: 6px;
+}
+.coracao {
+  height: 15px;
+  display: flex;
+  margin-top: 6px;
+}
