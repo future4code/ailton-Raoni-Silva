@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .containerAll {
@@ -43,10 +43,10 @@ h3 {
   height: 35px;
   margin-left: 15px;
 }
-main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 section {
   display: grid;
@@ -58,7 +58,6 @@ section {
   border: 1px solid black;
   margin: 10px;
   border-radius: 5px;
-  
 }
 
 .foot {
@@ -67,4 +66,10 @@ section {
   grid-column: 1 / -1;
   align-items: center;
   justify-content: center;
+}
+
+.main2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
