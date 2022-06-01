@@ -10,27 +10,26 @@
   grid-template-rows: 10vh 80vh 10vh;
   grid-template-columns: repeat(1, 1fr);
   justify-content: center;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .topPage {
   background-color: black;
-  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 1rem;
   gap: 5px;
 }
 .busca {
-  width: 350px;
-  height: 30px;
+  width: 20rem;
+  height: 2rem;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 }
 
 h3 {
@@ -39,12 +38,13 @@ h3 {
   margin-left: 5px;
 }
 .play {
-  width: 35px;
-  height: 35px;
-  margin-left: 15px;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 1rem;
 }
 main {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -52,24 +52,55 @@ section {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 16px;
+  gap: 1rem;
 }
 .card {
   border: 1px solid black;
-  margin: 10px;
+  margin: 1rem;
   border-radius: 5px;
 }
 
 .foot {
   display: flex;
   background-color: black;
-  grid-column: 1 / -1;
   align-items: center;
   justify-content: center;
 }
 
-.main2{
+.main2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .busca {
+    width: 40%;
+  }
+  .topPage{
+    padding: 1rem;
+  }
+  .main2 {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  video {
+    width: 320px;
+    height: 240px;
+  }
+ .containerAll{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+ }
+ .foot{
+   padding: 1rem;
+ }
+
 }
