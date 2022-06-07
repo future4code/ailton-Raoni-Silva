@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import CardGrande from "./components/CardGrande/CardGrande";
 import ImagemButton from "./components/ImagemButton/ImagemButton";
 import FotoUsuario from "./img/raoni.jpeg";
 import CardPequeno from "./components/CardPequeno/CardPequeno";
+
+
 
 
 function App() {
