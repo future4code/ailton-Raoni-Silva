@@ -1,6 +1,17 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+* {
+  font-family: sans-serif;
+}
+
+* {
+  text-decoration: none;
+}
+.topo-pagina {
+  display: inline;
   font-family: sans-serif;
   max-width: 100%;
 }
@@ -23,6 +34,35 @@ header {
   padding-top: 20px;
 }
 
+.botoes-navegacao {
+  position: relative;
+  text-align: right;
+  margin: 100px;
+  top: -190px;
+}
+
+.barra-sobre-mim {
+  position: relative;
+  width: 50%;
+  position: relative;
+  top: -200px;
+  left: 270px;
+  right: 100px;
+  bottom: 100px;
+  
+}
+
+.rodape{
+    display: inline;
+    position: relative;
+    width: 90%;
+    position: relative;
+    top: 110px;
+    left: 36px;
+    right: 100px;
+    bottom: 300px;
+
+}
 .menu {
   position: relative;
   text-align: right;
