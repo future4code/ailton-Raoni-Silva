@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
-
+import TelaCadastro from "./components/TelaCadastro";
+import TelaListaUsuarios from "./components/TelaListaUsuario";
 
 const H2 = styled.h2`
   padding-left: 2rem;
@@ -35,116 +36,37 @@ const Input2 = styled.input`
   margin: 1rem;
 `;
 const Section = styled.section`
-display:flex;
-flex-direction: column;
-justify-content: end;
-
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+`;
 
 export default class App extends React.Component {
   state = {
-    users: [],
-    inputName: "",
-    inputEmail: "",
+    telaAtual: "cadastro",
   };
 
-  onChangeInputName = (event) => {
-    this.setState({ inputName: event.target.value });
+  escolheTela = () => {
+    switch (this.state.telaAtual) {
+      case "cadastro":
+        return <TelaCadastro irParaLista={this.irParaLista} />;
+      case "lista":
+        return <TelaListaUsuarios irParaCadastro={this.irParaCadastro} />;
+      default:
+        return <div>Erro! Página não encontrada!</div>;
+    }
   };
 
-  onChangeInputEmail = (event) => {
-    this.setState({ inputEmail: event.target.value });
+  irParaCadastro = () => {
+    this.setState({ telaAtual: "cadastro" });
   };
 
-  componentDidMount() {
-    this.getUsers();
-  }
-
-  getUsers = () => {
-    axios
-      .get(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-        {
-          headers: {
-            Authorization: "raoni-silva-ailton",
-          },
-        }
-      )
-      .then((response) => {
-        this.setState({ users: response.data });
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  createUsers = () => {
-    const body = {
-      name: this.state.inputName,
-      email: this.state.inputEmail,
-    };
-    console.log(body);
-    axios
-      .post(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-        body,
-        {
-          headers: {
-            Authorization: "raoni-silva-ailton",
-          },
-        }
-      )
-      .then((response) => {
-        this.getUsers();
-        alert("Usuário criado com sucesso!");
-      })
-      .catch((error) => {
-        console.log(error.message);
-        alert("Deu erro!");
-      });
+  irParaLista = () => {
+    this.setState({ telaAtual: "lista" });
   };
 
   render() {
-    const userslist = this.state.users.map((user) => {
-      return (
-        <ul key={user.id}>
-          <li>{user.name}</li>
-        </ul>
-      );
-    });
-    return (
-      
-      <main>
-        <H2>Tela Inicial:</H2>
-
-        <hr />
-
-        <Button>Trocar de Tela</Button>
-        <main>
-          <Label>
-            <Input2
-              value={this.state.inputName}
-              onChange={this.onChangeInputName}
-              placeholder="Nome"
-              type="text"
-              name="name"
-            />
-            <Input2
-              value={this.state.inputEmail}
-              onChange={this.onChangeInputEmail}
-              placeholder="Email"
-              type="text"
-              name="email"
-            />
-          </Label>
-          <Input
-            onClick={this.createUsers}
-            type="submit"
-            value="Criar Usuário"
-          />
-        </main>
-        <section>{userslist}</section>
-      </main>
-    );
+    return <div>{this.escolheTela()}</div>;
   }
 }
+
