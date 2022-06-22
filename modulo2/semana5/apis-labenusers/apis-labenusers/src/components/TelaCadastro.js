@@ -46,27 +46,39 @@ export default class TelaCadastro extends React.Component {
     this.setState({ inputEmail: event.target.value });
   };
 
-  createUsers = () => {
-      const url = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users"
+  createUsers = async () => {
+    const url =
+      "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users";
     const body = {
       name: this.state.inputName,
       email: this.state.inputEmail,
     };
-   
-    axios
-      .post(url, body, {
-          headers: {
-            Authorization: "raoni-silva-ailton",
-          },
-        })
-      .then((response) => {
-        alert("Usuário criado com sucesso!");
-        this.setState({inputName:"", inputEmail:""})
-      })
-      .catch((error) => {
-        alert("Deu erro!");
-        this.setState({inputName:"", inputEmail:""})
+
+    try {
+      const response = await axios.post(url, body, {
+        headers: {
+          Authorization: "raoni-silva-ailton",
+        },
       });
+      alert("Usuário criado com sucesso!");
+      this.setState({ inputName: "", inputEmail: "" });
+    } catch (error) {
+      alert("Deu erro!");
+    }
+    // axios
+    //   .post(url, body, {
+    //       headers: {
+    //         Authorization: "raoni-silva-ailton",
+    //       },
+    //     })
+    //   .then((response) => {
+    //     alert("Usuário criado com sucesso!");
+    //     this.setState({inputName:"", inputEmail:""})
+    //   })
+    //   .catch((error) => {
+    //     alert("Deu erro!");
+    //     this.setState({inputName:"", inputEmail:""})
+    //   });
   };
   render() {
     return (

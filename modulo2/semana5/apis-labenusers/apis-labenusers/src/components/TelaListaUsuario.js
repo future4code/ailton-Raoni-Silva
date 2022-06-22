@@ -54,38 +54,60 @@ export default class TelaListaUsuarios extends React.Component {
   componentDidMount() {
     this.getUsers();
   }
-  getUsers = () => {
+  getUsers = async () => {
     const url =
       "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users";
-    axios
-      .get(url, {
+    // axios
+    //   .get(url, {
+    //     headers: {
+    //       Authorization: "raoni-silva-ailton",
+    //     },
+    //   })
+    //   .then((response) => {
+    //     this.setState({ users: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //   });
+    try {
+      const response = await axios.get(url, {
         headers: {
           Authorization: "raoni-silva-ailton",
         },
-      })
-      .then((response) => {
-        this.setState({ users: response.data });
-      })
-      .catch((error) => {
-        console.log(error.message);
       });
+      this.setState({ users: response.data });
+    } catch (error) {
+      alert("Ocorreu um problema, tente novamente!");
+    }
   };
 
-  deletarUser = (id) => {
+  deletarUser = async (id) => {
     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`;
-    axios
-      .delete(url, {
-        headers: {
-          Authorization: "raoni-silva-ailton",
-        },
-      })
-      .then((response) => {
-          alert("Usuário deletado com sucesso!")
-       this.getUsers();
-      })
-      .catch((error) => {
-        alert("Usuário não foi deletado!")
-      });
+    // axios
+    //   .delete(url, {
+    //     headers: {
+    //       Authorization: "raoni-silva-ailton",
+    //     },
+    //   })
+    //   .then((response) => {
+    //     alert("Usuário deletado com sucesso!");
+    //     this.getUsers();
+    //   })
+    //   .catch((error) => {
+    //     alert("Usuário não foi deletado!");
+    //   });
+    try{
+        const response = await axios.delete(url,{
+            headers: { 
+                Authorization: "raoni-silva-ailton"
+            }
+        });
+        alert("Usuário deletado com sucesso!")
+        this.getUsers();
+
+    } catch (error) {
+        alert("Usuário não foi deletado!");
+    }
   };
 
   render() {
