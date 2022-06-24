@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LogoCompleta from "../img-labefy/logocompleta.png";
+import axios from "axios";
 
 const DivHeader = styled.div`
   background-color: black;
@@ -30,6 +31,10 @@ const Button = styled.button`
   border: 0;
   border-radius: 1rem;
   background-color: orangered;
+  cursor: pointer;
+  &:hover {
+    background-color: orange;
+  }
 `;
 
 const Input = styled.input`
@@ -37,20 +42,55 @@ const Input = styled.input`
   height: 2rem;
   border: 0;
   border-radius: 1rem;
-
   margin-right: 1rem;
 `;
+export default class Header extends React.Component {
+  state = {
+    nomePlaylist: "",
+  };
 
-export const Header = () => {
-  return (
-    <DivHeader>
-      <Logo src={LogoCompleta} alt="Logo" />
+  handleNomePlaylist = (e) => {
+    this.setState({ nomePlaylist: e.target.value });
+  };
+  
 
-      <Search>
-        {" "}
-        <Input type="text" placeholder="Nome da Playlist"></Input>
-        <Button>Criar Playlist</Button>
-      </Search>
-    </DivHeader>
-  );
-};
+  createPlaylist = () => {
+    const url =
+      "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists";
+    const body = {
+      name: this.state.nomePlaylist,
+    };
+
+    axios
+      .post(url, body, {
+        headers: {
+          Authorization: "raoni-silva-ailton",
+        },
+      })
+      .then((response) => {
+        alert("Playlist criada com sucesso!");
+        this.setState({nomePlaylist: response.data})
+      })
+      .catch((error) => {
+        alert("A playlist não foi criada!");
+      });
+  };
+
+  render() {
+    return (
+      <DivHeader>
+        <Logo src={LogoCompleta} alt="Logo" />
+
+        <Search>
+          <Input
+            type="text"
+            placeholder=" Nome da Playlist"
+            value={this.state.nomePlaylist}
+            onChange={this.handleNomePlaylist}
+          ></Input>
+          <Button onClick={this.createPlaylist}>Criar Playlist</Button>
+        </Search>
+      </DivHeader>
+    );
+  }
+}
