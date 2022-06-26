@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-
 const DivMain = styled.div`
   background-color: rgb(21, 21, 21);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -56,7 +55,7 @@ const TituloList = styled.div`
 `;
 const Playlist = styled.div`
   color: black;
-`
+`;
 // const DescricaoList = styled.p`
 //   font-size: 18px;
 //   margin: 0;
@@ -103,7 +102,7 @@ export default class Main extends React.Component {
       })
       .then((response) => {
         this.catchLists();
-        alert("Usuário(a) deletado(a) com sucesso!");
+        alert("Playlist deletada com sucesso!");
       })
       .catch((err) => {
         alert("Ocorreu um erro, tente novamente");
@@ -113,21 +112,12 @@ export default class Main extends React.Component {
   render() {
     const listaMusicas = this.state.playlists.map((lista) => {
       return (
-        <ContainerX key={lista.id}
-                    listaName={lista.name}
-        ContainerList>
-        <ContainerList
-          
-        
-          onClick={() => this.props.irPaginaDetalhe(lista.id)}
-          
-        >
-          <Playlist>Playlist:</Playlist>
-          {lista.name}
-
-          
-        </ContainerList>
-        <div>
+        <ContainerX key={lista.id} listaName={lista.name} ContainerList>
+          <ContainerList onClick={() => this.props.irPaginaDetalhe(lista.id)}>
+            <Playlist>Playlist:</Playlist>
+            {lista.name}
+          </ContainerList>
+          <div>
             <button onClick={() => this.deletePlaylist(lista.id)}>X</button>
           </div>
         </ContainerX>
@@ -137,8 +127,7 @@ export default class Main extends React.Component {
     return (
       <DivMain>
         <ContainerMaster>
-         
-          <TituloList  >{listaMusicas} </TituloList>
+          <TituloList>{listaMusicas} </TituloList>
         </ContainerMaster>
       </DivMain>
     );
