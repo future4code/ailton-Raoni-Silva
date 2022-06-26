@@ -43,6 +43,7 @@ const Input = styled.input`
   border: 0;
   border-radius: 1rem;
   margin-right: 1rem;
+  padding-left: 1rem;
 `;
 export default class Header extends React.Component {
   state = {
@@ -52,7 +53,6 @@ export default class Header extends React.Component {
   handleNomePlaylist = (e) => {
     this.setState({ nomePlaylist: e.target.value });
   };
-  
 
   createPlaylist = () => {
     const url =
@@ -69,7 +69,7 @@ export default class Header extends React.Component {
       })
       .then((response) => {
         alert("Playlist criada com sucesso!");
-        this.setState({nomePlaylist: response.data})
+        this.setState({ nomePlaylist: response.data });
       })
       .catch((error) => {
         alert("A playlist não foi criada!");

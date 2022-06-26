@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+
 const DivMain = styled.div`
   background-color: rgb(21, 21, 21);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -15,14 +16,13 @@ const DivMain = styled.div`
 `;
 
 const ContainerMaster = styled.div`
-/* display: grid;
+  /* display: grid;
 grid-template-columns: repeat(3,1fr);
 grid-template-rows: repeat(3,1fr); */
-
 `;
 const ContainerList = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   text-align: center;
 
   width: 14rem;
@@ -35,16 +35,28 @@ const ContainerList = styled.div`
     background-color: #b9d3f8;
   }
 `;
-const TituloList = styled.p`
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
+const ContainerX = styled.div`
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin: 10px;
+  background-color: #f2f7ff;
+  padding: 10px;
+  border-radius: 8px;
+`;
+const TituloList = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   color: #0e62b5;
   font-size: 20px;
   margin: 0 0 4px 0;
   font-weight: 600;
 `;
+const Playlist = styled.div`
+  color: black;
+`
 // const DescricaoList = styled.p`
 //   font-size: 18px;
 //   margin: 0;
@@ -56,12 +68,11 @@ export default class Main extends React.Component {
   };
 
   componentDidMount() {
-      this.catchLists()
+    this.catchLists();
   }
-  componentDidUpdate(){ 
-      this.catchLists()
+  componentDidUpdate() {
+    this.catchLists();
   }
-
 
   catchLists = () => {
     const url =
@@ -74,15 +85,13 @@ export default class Main extends React.Component {
         },
       })
       .then((response) => {
-        
         this.setState({ playlists: response.data.result.list });
-        console.log(response)
+        // console.log(response);
       })
       .catch((error) => {
         alert("Ocorreu um problema, tente novamente");
       });
   };
-
 
   deletePlaylist = (id) => {
     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`;
@@ -95,7 +104,6 @@ export default class Main extends React.Component {
       .then((response) => {
         this.catchLists();
         alert("Usuário(a) deletado(a) com sucesso!");
-       
       })
       .catch((err) => {
         alert("Ocorreu um erro, tente novamente");
@@ -104,22 +112,33 @@ export default class Main extends React.Component {
 
   render() {
     const listaMusicas = this.state.playlists.map((lista) => {
-
       return (
-          <ContainerList>
-              {lista.name}
-              <div>
-              <button onClick={() => this.deletePlaylist(lista.id)}>X</button>
-              </div>
+        <ContainerX key={lista.id}
+                    listaName={lista.name}
+        ContainerList>
+        <ContainerList
+          
+        
+          onClick={() => this.props.irPaginaDetalhe(lista.id)}
+          
+        >
+          <Playlist>Playlist:</Playlist>
+          {lista.name}
 
-          </ContainerList>
-      )
-  })
-  
+          
+        </ContainerList>
+        <div>
+            <button onClick={() => this.deletePlaylist(lista.id)}>X</button>
+          </div>
+        </ContainerX>
+      );
+    });
+
     return (
       <DivMain>
         <ContainerMaster>
-        <TituloList>{listaMusicas} </TituloList>
+         
+          <TituloList  >{listaMusicas} </TituloList>
         </ContainerMaster>
       </DivMain>
     );
