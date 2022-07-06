@@ -21,10 +21,6 @@ const ContainerAll = styled.div`
 export default function App() {
   const [tela, setTela] = useState("home");
 
- const atualizaTela = (id) => {
-   
-  };
-
   const trocaTela = () => {
     switch (tela) {
       case "home":
@@ -35,13 +31,20 @@ export default function App() {
         return <Home />;
     }
   };
+  const irHome = () => {
+    setTela("home")
+  }
+const irMatchScreen = () => {
+  setTela("matchScreen")
+}
+
 
   return (
     <ContainerAll>
       <div>RENDERIZA</div>
-      <button onClick={trocaTela()}>Troca Tela</button>
-      <Home/>
-      <MatchScreen/>
+      <button onClick={() => irHome()}>Home</button>
+      <button onClick={() => irMatchScreen()}>Match</button>
+      {trocaTela()}
     </ContainerAll>
   );
 }
