@@ -1,6 +1,6 @@
-import React from "react";
 import styled from "styled-components";
-import Model from "../img/ela.jpeg";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 const PerfilContainer = styled.div`
   display: flex;
@@ -12,7 +12,6 @@ const PerfilContainer = styled.div`
   align-items: center;
   gap: 1rem;
   padding-top: 1rem;
-  
 `;
 
 const PhotoPerfil = styled.img`
@@ -20,32 +19,30 @@ const PhotoPerfil = styled.img`
   height: 4rem;
   width: 4rem;
   margin-left: 1rem;
-margin-right: 1rem;
+  margin-right: 1rem;
 `;
 const ContainerPerfil2 = styled.div`
-display: flex;
-width: 30vw;
-height: 5rem;
-background-color:#242424 ;
-align-items: center;
-gap:1rem;
-`
-const Name = styled.h1`
-  width: 20rem;
-  padding-left: 1rem;
-  font-size: 20px;
-
+  display: flex;
+  width: 30vw;
+  height: 5rem;
+  background-color: #242424;
+  align-items: center;
+  gap: 1rem;
 `;
 
-export default function MatchScreen() {
+export default function MatchScreen({ matches }) {
   return (
     <PerfilContainer>
-      <ContainerPerfil2>
-      <PhotoPerfil src={Model} alt="Model"/>
-      <Name><strong>Maria Janaina, 30</strong></Name>
-      </ContainerPerfil2>
-      
-    
+      {matches.map((perfil) => {
+        return (
+          <ContainerPerfil2 key={perfil}>
+            <>
+              <PhotoPerfil src={perfil.photo} />
+              {perfil.name}, {perfil.age}
+            </>
+          </ContainerPerfil2>
+        );
+      })}
     </PerfilContainer>
   );
 }

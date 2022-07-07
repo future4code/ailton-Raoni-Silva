@@ -7,10 +7,12 @@ import { useState } from "react";
 import Logo from "./img/logoAstro.png";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Button, ButtonGroup, Stack, Icon } from "@chakra-ui/react";
-import { BsFillHeartFill } from "react-icons/bs";
 import { IoMdFlame } from "react-icons/io";
 import { BsFillChatDotsFill } from "react-icons/bs";
-import { ImCancelCircle } from "react-icons/im";
+import { AiOutlineClear } from "react-icons/ai";
+import axios from "axios";
+import { useEffect } from "react";
+
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,33 +31,46 @@ const ContainerAll = styled.div`
   width: 30vw;
   height: 95vh;
   border-radius: 2rem;
-  margin-left: 30rem;
+  margin-left: 20rem;
   margin-top: 2rem;
 `;
 const LogoCont = styled.div`
   display: flex;
   padding: 1rem;
-  margin-right: 7rem;
+  margin-right: 3rem;
 `;
 const LogoBox = styled.img`
   width: 10rem;
 `;
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  padding-top: 2rem;
-  width: 30vw;
-`;
 
 export default function App() {
   const [tela, setTela] = useState("home");
+  const [matches, setMatches] = useState([]);
+
+  
+  const getMatches = () => {
+    axios
+      .get(
+        "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/raoni/matches"
+      )
+      .then((res) => {
+        setMatches(res.data.matches);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  useEffect(() => {
+    getMatches();
+  }, []);
 
   const trocaTela = () => {
     switch (tela) {
       case "home":
         return <Home />;
       case "matchScreen":
-        return <MatchScreen />;
+        return <MatchScreen matches={matches} />;
       default:
         return <Home />;
     }
@@ -67,6 +82,20 @@ export default function App() {
     setTela("matchScreen");
   };
 
+  const putClear = () => {
+    axios
+      .put(
+        "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/raoni/clear"
+      )
+      .then((res) => {
+       alert('Chats Apagados!')
+      })
+      .catch((err) => {
+        console.log(err.response)
+      });
+  };
+  
+
   return (
     <ChakraProvider>
       <ContainerAll>
@@ -76,13 +105,22 @@ export default function App() {
             onClick={() => irHome()}
             leftIcon={<Icon as={IoMdFlame} color={"#C53030"} w={10} h={10} />}
             colorScheme="Red"
-            width={460}
+            width={350}
             variant="solid"
             fontWeight="stronger"
             fontSize="30"
           >
             <LogoBox src={Logo} />
           </Button>
+          <Button
+            onClick={() => putClear()}
+            leftIcon={
+              <Icon as={AiOutlineClear} color={"#C53030"} w={8} h={8} />
+            }
+
+            backgroundColor={0}
+            colorScheme="Red"
+          ></Button>
           <Button
             onClick={() => irMatchScreen()}
             leftIcon={
@@ -93,33 +131,6 @@ export default function App() {
         </LogoCont>
 
         {trocaTela()}
-
-        <Footer>
-          <Button
-            leftIcon={
-              <Icon as={BsFillHeartFill} color={"#C53030"} w={12} h={12} />
-            }
-            colorScheme="Red"
-            variant="solid"
-            h={4}
-            fontWeight="thin"
-            fontSize="16"
-            marginBottom="1"
-            marginTop="2"
-          />
-          <Button
-            leftIcon={
-              <Icon as={ImCancelCircle} color={"#C53030"} w={12} h={12} />
-            }
-            colorScheme="Red"
-            variant="solid"
-            h={4}
-            fontWeight="thin"
-            fontSize="16"
-            marginBottom="1"
-            marginTop="2"
-          ></Button>
-        </Footer>
       </ContainerAll>
     </ChakraProvider>
   );
