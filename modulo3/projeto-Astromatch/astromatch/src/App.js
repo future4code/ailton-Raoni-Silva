@@ -63,7 +63,7 @@ export default function App() {
 
   useEffect(() => {
     getMatches();
-  }, []);
+  }, [matches]);
 
   const trocaTela = () => {
     switch (tela) {
@@ -104,7 +104,7 @@ export default function App() {
           <Button
             onClick={() => irHome()}
             leftIcon={<Icon as={IoMdFlame} color={"#C53030"} w={10} h={10} />}
-            colorScheme="Red"
+            colorScheme='"Red"'
             width={350}
             variant="solid"
             fontWeight="stronger"
@@ -113,6 +113,7 @@ export default function App() {
             <LogoBox src={Logo} />
           </Button>
           <Button
+          
             onClick={() => putClear()}
             leftIcon={
               <Icon as={AiOutlineClear} color={"#C53030"} w={8} h={8} />
