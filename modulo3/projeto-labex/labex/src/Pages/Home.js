@@ -1,9 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { Buttons, Container } from "../Style/Style";
+import { Buttons, Container, Button, Logo } from "../Style/Style";
 import { useNavigate } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-
+import { goToLista } from "../Routes/Coordinator";
+import { goToLogin } from "../Routes/Coordinator";
+import labex2 from "../img/labex2.png"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -11,30 +12,21 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: 0;
     width: 100vw;
-  height: 100vh;
+    font-family: "Cambria";
+  
   }
 `;
-    
-    
 
 export default function Home() {
   const navigate = useNavigate();
 
-  const goToLista = () => {
-    navigate("/listas");
-  };
-
-  const goToLogin = () => {
-    navigate("login");
-  };
-
   return (
     <Container>
       <GlobalStyle> </GlobalStyle>
-      <h1>LabeX</h1>
+      <Logo src={labex2} />
       <Buttons>
-        <button onClick={goToLista}>Viagens</button>
-        <button onClick={goToLogin}>Área de Admin</button>
+        <Button onClick={() => goToLista(navigate)}>Viagens</Button>
+        <Button onClick={() => goToLogin(navigate)}>Área de Admin</Button>
       </Buttons>
     </Container>
   );
