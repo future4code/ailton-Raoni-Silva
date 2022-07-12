@@ -1,16 +1,15 @@
 import React from "react";
-import Home from "./Pages/Home";
-import "./App.css";
-import ListTripsPage from "./Pages/ListTripsPage";
-import LoginPage from "./Pages/LoginPage";
+import { Router } from "./Routes/Router";
+import { Container } from "./Style/Style";
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-      <ListTripsPage/>
-      <LoginPage/>
-    </div>
+    <Container>
+      <Router />
+    </Container>
   );
 }
 
