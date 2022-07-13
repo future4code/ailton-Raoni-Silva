@@ -10,16 +10,17 @@ export const Buttons = styled.div`
 
 export const Button = styled.button`
   width: 8rem;
+  margin-top: 1rem;
   border-radius: 1rem;
   border: 0;
   height: 2rem;
+  font-weight: bold;
   background-color: orangered;
   cursor: pointer;
   &:hover {
     background-color: orange;
   }
   color: white;
-  
 `;
 
 export const BoxTrip = styled.div`
@@ -29,19 +30,50 @@ export const BoxTrip = styled.div`
   font-family: Quicksand, arial, sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
+  align-items: center;
+`;
+export const BoxTrip2 = styled.div`
+  overflow: hidden;
+  padding-left: 1rem;
+  width: 35rem;
+  font-family: Quicksand, arial, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #d9dada;
+  }
+  color: #898989;
+`;
+export const BoxTrip3 = styled.div`
+  overflow: hidden;
+  margin-bottom: 1rem;
+  width: 35rem;
+  font-family: Quicksand, arial, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+    cursor: pointer;
+  &:hover {
+    background-color: #d9dada;
+  }
+  color: #898989;
+`;
+
+export const ListAdm = styled.div`
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+`;
+export const ContainerList = styled.div`
+  background-color: #f3f3f3;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-export const ContainerList = styled.div`
-  padding-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
   justify-content: center;
-  align-content: center;
   text-align: center;
+  gap: 1rem;
 `;
 
 export const Inputs = styled.input`
@@ -49,6 +81,7 @@ export const Inputs = styled.input`
   border-radius: 1rem;
   border: 0;
   height: 2rem;
+  padding-left: 1rem;
 `;
 
 export const Logo = styled.img`
@@ -56,16 +89,17 @@ export const Logo = styled.img`
 `;
 
 export const Select = styled.select`
-  width: 20rem;
+  width: 21rem;
   border-radius: 1rem;
   border: 0;
   height: 2rem;
+  padding-left: 0.5rem;
 `;
 
 export const Container = styled.div`
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
