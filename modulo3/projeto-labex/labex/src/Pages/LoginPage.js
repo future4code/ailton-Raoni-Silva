@@ -1,15 +1,20 @@
 import React from "react";
 import { Buttons, Container, Inputs, Button, Logo } from "../Style/Style";
 import { useNavigate } from "react-router-dom";
-import { goBack, goToAdminHome } from "../Routes/Coordinator";
+import { goHome, goToAdminHome } from "../Routes/Coordinator";
 import labex2 from "../img/labex2.png";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useLoginAdm } from "../Hooks/useLoginAdm";
+
+
 
 export default function LoginPage() {
+  useLoginAdm()
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -61,7 +66,7 @@ export default function LoginPage() {
         ></Inputs>
 
         <Buttons>
-          <Button onClick={() => goBack(navigate)}>Voltar</Button>{" "}
+          <Button onClick={() => goHome(navigate)}>Voltar</Button>{" "}
           <Button onClick={onSubmitLogin}>Entrar</Button>
         </Buttons>
       </Container>

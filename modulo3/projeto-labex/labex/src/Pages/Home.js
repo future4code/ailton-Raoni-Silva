@@ -6,6 +6,7 @@ import { goToLista } from "../Routes/Coordinator";
 import { goToLogin } from "../Routes/Coordinator";
 import labex2 from "../img/labex2.png"
 
+
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -19,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
 export default function Home() {
   const navigate = useNavigate();
+  
 
   return (
     <Container>

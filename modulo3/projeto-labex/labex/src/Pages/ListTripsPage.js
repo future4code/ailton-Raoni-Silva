@@ -34,6 +34,7 @@ export default function ListTripsPage() {
       </Buttons>
       <h1>Lista de Viagens</h1>
       {tripList}
+     
     </ContainerList>
   );
 }

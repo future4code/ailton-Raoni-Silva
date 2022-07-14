@@ -6,7 +6,7 @@ export const goToLista = (navigate) => {
   };
 
   export const goToLogin = (navigate) => {
-    navigate("login");
+    navigate("/login");
   };
 
   export const goBack = (navigate) => {
@@ -27,4 +27,7 @@ export const goToLista = (navigate) => {
 
   export const goHome = (navigate) => {
     navigate("/")
+  }
+  export const goCreate = (navigate) => {
+    navigate("create")
   }

@@ -83,6 +83,7 @@ export default function ApplicationFormPage() {
       ></Inputs>
       <Inputs
         name="age"
+        type="number"
         value={candidate.age}
         onChange={onChangeCandidate}
         placeholder="Idade"

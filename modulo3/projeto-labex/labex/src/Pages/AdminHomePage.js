@@ -4,30 +4,65 @@ import { useRequestData } from "../Hooks/useRequestData";
 import { BASE_URL } from "../Contants/Contants";
 import {
   BoxTrip2,
+  BoxTrip4,
   Container,
   Logo,
   Buttons,
   Button,
   ListAdm,
+  ButtonDel,
 } from "../Style/Style";
 import labex2 from "../img/labex2.png";
-import { goHome, goToDetailPage } from "../Routes/Coordinator";
+import { goCreate, goHome, goToDetailPage } from "../Routes/Coordinator";
+import { useProtectedtPage } from "../Hooks/useProtectedPage";
+import { goToLogin } from "../Routes/Coordinator";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 export default function AdminHomePage() {
+  useProtectedtPage();
   const navigate = useNavigate();
-  const [trips] = useRequestData(`${BASE_URL}/raoni/trips`, {});
+  const [trips, getTrip] = useRequestData(`${BASE_URL}/raoni/trips`, {});
+  const params = useParams();
   
   
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    goToLogin(navigate);
+  };
+
+  const deleteTrip = (id) => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .delete(
+        `${BASE_URL}/raoni/trips/${id}`,
+        {
+          headers: {
+            auth: token,
+          },
+        }
+      )
+      .then((res) => {
+        alert("Viagem deletada!")
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("Nao Funcionou", err.response);
+      });
+  };
 
   const tripList =
     trips &&
     trips.map((trip) => {
       return (
-        <BoxTrip2
-          onClick={() => goToDetailPage(navigate, trip.id)}
-          key={trip.id}
-        >
-          <h3>{trip.name}</h3>
+        <BoxTrip2 key={trip.id}>
+          <BoxTrip4 onClick={() => goToDetailPage(navigate, trip.id)}>
+            <h3>{trip.name}</h3>
+          </BoxTrip4>
+          <ButtonDel onClick={() => deleteTrip(trip.id)}>Delete</ButtonDel>
         </BoxTrip2>
       );
     });
@@ -38,8 +73,8 @@ export default function AdminHomePage() {
       <h1>Painel Administrativo</h1>
       <Buttons>
         <Button onClick={() => goHome(navigate)}>Voltar</Button>
-        <Button>Criar Viagem</Button>
-        <Button>Logout</Button>
+        <Button onClick={() => goCreate(navigate)}>Criar Viagem</Button>
+        <Button onClick={logout}>Logout</Button>
       </Buttons>
       <ListAdm>
         {tripList && tripList.length > 0 ? tripList : <p>Carregando...</p>}

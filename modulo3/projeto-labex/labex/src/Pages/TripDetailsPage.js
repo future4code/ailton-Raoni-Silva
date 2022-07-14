@@ -6,7 +6,8 @@ import { useRequestData } from "../Hooks/useRequestData";
 import { BASE_URL } from "../Contants/Contants";
 import { useParams } from "react-router-dom";
 import {
-  BoxTrip3, BoxTrip,
+  BoxTrip3,
+  BoxTrip,
   Container,
   Logo,
   Buttons,
@@ -15,11 +16,14 @@ import {
 } from "../Style/Style";
 import labex2 from "../img/labex2.png";
 import { goBack } from "../Routes/Coordinator";
+import { useProtectedtPage } from "../Hooks/useProtectedPage";
 
 export default function TripDetailsPage() {
-   const navigate = useNavigate();
+  useProtectedtPage();
+  const navigate = useNavigate();
   const [tripDetail, setTripDetail] = useState([]);
-  const [candidate, setCandidate] = useState([])
+  const [candidate, setCandidate] = useState([]);
+  const [approved, setApproved] = useState([]);
   const params = useParams();
 
   useEffect(() => {
@@ -35,26 +39,34 @@ export default function TripDetailsPage() {
         }
       )
       .then((res) => {
-        setTripDetail(res.data.trip)
+        setTripDetail(res.data.trip);
         setCandidate(res.data.trip.candidates);
-        // console.log(candidate)
+        setApproved(res.data.trip.approved);
       })
       .catch((err) => {
-        console.log("AQUI ERRADO", err.response);
+        console.log(err.response);
       });
   });
   const infoCandidate =
     candidate &&
     candidate.map((info) => {
       return (
-        <BoxTrip3
-          key={info.name}>
+        <BoxTrip key={info.name}>
           <h3>Nome: {info.name}</h3>
-          <p><strong>Profissão:</strong> {info.profession}</p>
-          <p><strong>Idade:</strong> {info.age} anos</p>
-          <p><strong>País:</strong> {info.country}</p>
-          <p><strong>Texto de Candidatura:</strong> {info.applicationText}</p>
-        </BoxTrip3>
+          <p>
+            <strong>Profissão:</strong> {info.profession}
+          </p>
+          <p>
+            <strong>Idade:</strong> {info.age} anos
+          </p>
+          <p>
+            <strong>País:</strong> {info.country}
+          </p>
+          <p>
+            <strong>Texto de Candidatura:</strong> {info.applicationText}
+          </p>
+          <Button>Aprovar</Button> <Button>Reprovar</Button>
+        </BoxTrip>
       );
     });
   return (
@@ -76,11 +88,17 @@ export default function TripDetailsPage() {
           <strong>Data:</strong> {tripDetail.date}
         </p>
       </BoxTrip>
-      <Button onClick={() => {goBack(navigate)}}> Voltar</Button>
-      <div>
+      <Button
+        onClick={() => {
+          goBack(navigate);
+        }}
+      >
+        {" "}
+        Voltar
+      </Button>
       <h2>Candidatos Pendentes</h2>
       {infoCandidate}
-      </div>
+      <h2> Candidatos Aprovados</h2>
     </Container>
   );
 }
