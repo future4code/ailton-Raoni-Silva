@@ -51,7 +51,6 @@ export default function LoginPage() {
       <Container>
         <Logo src={labex2} />
         <h2>Login</h2>
-
         <Inputs
           placeholder="E-mail"
           type="email"

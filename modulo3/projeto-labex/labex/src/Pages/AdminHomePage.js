@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRequestData } from "../Hooks/useRequestData";
 import { BASE_URL } from "../Contants/Contants";
@@ -17,16 +17,13 @@ import { goCreate, goHome, goToDetailPage } from "../Routes/Coordinator";
 import { useProtectedtPage } from "../Hooks/useProtectedPage";
 import { goToLogin } from "../Routes/Coordinator";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 
 export default function AdminHomePage() {
   useProtectedtPage();
   const navigate = useNavigate();
   const [trips, getTrip] = useRequestData(`${BASE_URL}/raoni/trips`, {});
-  const params = useParams();
-  
-  
+
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -37,19 +34,17 @@ export default function AdminHomePage() {
     const token = localStorage.getItem("token");
 
     axios
-      .delete(
-        `${BASE_URL}/raoni/trips/${id}`,
-        {
-          headers: {
-            auth: token,
-          },
-        }
-      )
-      .then((res) => {
-        alert("Viagem deletada!")
-        console.log(res);
+      .delete(`${BASE_URL}/raoni/trips/${id}`, {
+        headers: {
+          auth: token,
+        },
       })
-      .catch((err) => {
+      .then((res) => {
+        alert("Viagem deletada!");
+        getTrip(`${BASE_URL}/raoni/trips`)
+        
+      })
+      .catch((err) => { 
         console.log("Nao Funcionou", err.response);
       });
   };
@@ -62,7 +57,9 @@ export default function AdminHomePage() {
           <BoxTrip4 onClick={() => goToDetailPage(navigate, trip.id)}>
             <h3>{trip.name}</h3>
           </BoxTrip4>
-          <ButtonDel onClick={() => deleteTrip(trip.id)}>Delete</ButtonDel>
+          <ButtonDel onClick={() => deleteTrip(trip.id)}>
+            Delete
+          </ButtonDel>
         </BoxTrip2>
       );
     });

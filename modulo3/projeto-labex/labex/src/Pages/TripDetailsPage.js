@@ -6,7 +6,7 @@ import { useRequestData } from "../Hooks/useRequestData";
 import { BASE_URL } from "../Contants/Contants";
 import { useParams } from "react-router-dom";
 import {
-  BoxTrip3,
+  BoxTrip5,
   BoxTrip,
   Container,
   Logo,
@@ -22,7 +22,7 @@ export default function TripDetailsPage() {
   useProtectedtPage();
   const navigate = useNavigate();
   const [tripDetail, setTripDetail] = useState([]);
-  const [candidate, setCandidate] = useState([]);
+  const [candidates, setCandidates] = useState([]);
   const [approved, setApproved] = useState([]);
   const params = useParams();
 
@@ -30,8 +30,33 @@ export default function TripDetailsPage() {
     const token = localStorage.getItem("token");
 
     axios
-      .get(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/raoni/trip/${params.id}`,
+      .get(`${BASE_URL}/raoni/trip/${params.id}`, {
+        headers: {
+          auth: token,
+        },
+      })
+      .then((res) => {
+        setTripDetail(res.data.trip);
+        setCandidates(res.data.trip.candidates);
+        setApproved(res.data.trip.approved);
+       
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  },[params]);
+  
+ 
+
+  const decideCandidate = (id) => {
+    const body = {
+      approve: true,
+    };
+    const token = localStorage.getItem("token");
+    axios
+      .put(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/raoni/trips/${params.id}/candidates/${id}/decide`,
+        body,
         {
           headers: {
             auth: token,
@@ -39,36 +64,58 @@ export default function TripDetailsPage() {
         }
       )
       .then((res) => {
-        setTripDetail(res.data.trip);
-        setCandidate(res.data.trip.candidates);
-        setApproved(res.data.trip.approved);
+        alert("Candidato aprovado!");
+        console.log(res)
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log("AQUI", err);
       });
-  });
+  };
   const infoCandidate =
-    candidate &&
-    candidate.map((info) => {
+    candidates &&
+    candidates.map((candidate) => {
       return (
-        <BoxTrip key={info.name}>
-          <h3>Nome: {info.name}</h3>
+        <BoxTrip key={candidate.name}>
+          <h3>Nome: {candidate.name}</h3>
           <p>
-            <strong>Profissão:</strong> {info.profession}
+            <strong>Profissão:</strong> {candidate.profession}
           </p>
           <p>
-            <strong>Idade:</strong> {info.age} anos
+            <strong>Idade:</strong> {candidate.age} anos
           </p>
           <p>
-            <strong>País:</strong> {info.country}
+            <strong>País:</strong> {candidate.country}
           </p>
           <p>
-            <strong>Texto de Candidatura:</strong> {info.applicationText}
+            <strong>Texto de Candidatura:</strong> {candidate.applicationText}
           </p>
-          <Button>Aprovar</Button> <Button>Reprovar</Button>
+          <Button onClick={() => decideCandidate(candidate.id)}>Aprovar</Button>{" "}
+          <Button onClick={() => decideCandidate(false)}>Reprovar</Button>
         </BoxTrip>
       );
     });
+const candidateApproved = approved && approved.map((cand) => {
+  return (
+    <BoxTrip5 key={cand.name}>
+      <h3>Nome: {cand.name}</h3>
+      <p>
+        <strong>Profissão:</strong> {cand.profession}
+      </p>
+      <p>
+        <strong>Idade:</strong> {cand.age} anos
+      </p>
+      <p>
+        <strong>País:</strong> {cand.country}
+      </p>
+      <p>
+        <strong>Texto de Candidatura:</strong> {cand.applicationText}
+      </p>
+  
+    </BoxTrip5>
+  );
+
+})
+
   return (
     <Container>
       <Logo src={labex2} />
@@ -97,8 +144,16 @@ export default function TripDetailsPage() {
         Voltar
       </Button>
       <h2>Candidatos Pendentes</h2>
-      {infoCandidate}
+      {infoCandidate && infoCandidate.length > 0 ? (
+        infoCandidate
+      ) : (
+        <p>Não há candidatos para aprovação.</p>
+      )}
+
       <h2> Candidatos Aprovados</h2>
+
+        {candidateApproved}
+      
     </Container>
   );
 }

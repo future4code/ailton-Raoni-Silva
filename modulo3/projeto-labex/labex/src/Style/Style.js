@@ -47,6 +47,18 @@ export const BoxTrip = styled.div`
   border-radius: 10px;
   align-items: center;
 `;
+
+export const BoxTrip5 = styled.div`
+background-color:#b3e5b6 ;
+  overflow: hidden;
+  margin: 22px auto 0;
+  width: 35rem;
+  font-family: Quicksand, arial, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  align-items: center;
+  margin-bottom: 2rem;
+`;
 export const BoxTrip2 = styled.div`
   overflow: hidden;
   padding-left: 1rem;
