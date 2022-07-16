@@ -1,10 +1,15 @@
 import React from "react";
-import { Buttons, Container, Button, Logo } from "../Style/Style";
+import { Buttons, Container, Logo1 } from "../Style/Style";
 import { useNavigate } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { goToLista } from "../Routes/Coordinator";
 import { goToLogin } from "../Routes/Coordinator";
-import labex2 from "../img/labex2.png"
+import labex2 from "../img/labex2.png";
+import { ChakraProvider } from '@chakra-ui/react'
+import { Button, ButtonGroup } from '@chakra-ui/react'
+
+
+
 
 
 const GlobalStyle = createGlobalStyle`
@@ -23,13 +28,15 @@ export default function Home() {
   
 
   return (
+    <ChakraProvider>
     <Container>
       <GlobalStyle> </GlobalStyle>
-      <Logo src={labex2} />
+      <Logo1 src={labex2} />
       <Buttons>
-        <Button onClick={() => goToLista(navigate)}>Viagens</Button>
-        <Button onClick={() => goToLogin(navigate)}>Área de Admin</Button>
+        <Button colorScheme='blue' color='#ED8936' size='md' variant='outline' onClick={() => goToLista(navigate)}>Viagens</Button>
+        <Button colorScheme='blue' color='#ED8936' size='md' variant='outline' onClick={() => goToLogin(navigate)}>Área de Admin</Button>
       </Buttons>
     </Container>
+    </ChakraProvider>
   );
 }

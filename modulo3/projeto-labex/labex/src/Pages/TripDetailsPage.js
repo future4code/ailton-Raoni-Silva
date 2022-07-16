@@ -7,16 +7,20 @@ import { BASE_URL } from "../Contants/Contants";
 import { useParams } from "react-router-dom";
 import {
   BoxTrip5,
+  BoxTrip3,
   BoxTrip,
   Container,
   Logo,
-  Buttons,
-  Button,
-  ListAdm,
+  Titulo,
+  Subtitulo,
+  TituloS
 } from "../Style/Style";
 import labex2 from "../img/labex2.png";
 import { goBack } from "../Routes/Coordinator";
 import { useProtectedtPage } from "../Hooks/useProtectedPage";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 export default function TripDetailsPage() {
   useProtectedtPage();
@@ -25,6 +29,7 @@ export default function TripDetailsPage() {
   const [candidates, setCandidates] = useState([]);
   const [approved, setApproved] = useState([]);
   const params = useParams();
+  const toast = useToast();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -39,18 +44,15 @@ export default function TripDetailsPage() {
         setTripDetail(res.data.trip);
         setCandidates(res.data.trip.candidates);
         setApproved(res.data.trip.approved);
-       
       })
       .catch((err) => {
         console.log(err.response);
       });
-  },[params]);
-  
- 
+  }, [params]);
 
-  const decideCandidate = (id) => {
+  const decideCandidate = (id, status) => {
     const body = {
-      approve: true,
+      approve: status,
     };
     const token = localStorage.getItem("token");
     axios
@@ -64,18 +66,33 @@ export default function TripDetailsPage() {
         }
       )
       .then((res) => {
-        alert("Candidato aprovado!");
-        console.log(res)
+        status === true
+          ? toast({
+              title: "Candidato Aprovado!",
+              description: "Candidato passou no processo!",
+              status: "success",
+              duration: 9000,
+              position: "top",
+              isClosable: true,
+            })
+          : toast({
+              title: "Candidato Reprovado!",
+              description: "Candidato não passou no processo!",
+              status: "error",
+              duration: 9000,
+              position: "top",
+              isClosable: true,
+            });
+        tripDetail();
       })
-      .catch((err) => {
-        console.log("AQUI", err);
-      });
+      .catch((err) => {});
   };
+
   const infoCandidate =
     candidates &&
     candidates.map((candidate) => {
       return (
-        <BoxTrip key={candidate.name}>
+        <BoxTrip5 key={candidate.name}>
           <h3>Nome: {candidate.name}</h3>
           <p>
             <strong>Profissão:</strong> {candidate.profession}
@@ -89,71 +106,98 @@ export default function TripDetailsPage() {
           <p>
             <strong>Texto de Candidatura:</strong> {candidate.applicationText}
           </p>
-          <Button onClick={() => decideCandidate(candidate.id)}>Aprovar</Button>{" "}
-          <Button onClick={() => decideCandidate(false)}>Reprovar</Button>
-        </BoxTrip>
+          <Button
+            w={40}
+            colorScheme="blue"
+            color="#ED8936"
+            size="md"
+            variant="outline"
+            onClick={() => {
+              decideCandidate(candidate.id, true);
+            }}
+          >
+            Aprovar
+          </Button>{" "}
+          <Button
+            w={40}
+            colorScheme="blue"
+            color="#ED8936"
+            size="md"
+            variant="outline"
+            onClick={() => {
+              decideCandidate(candidate.id, false);
+            }}
+          >
+            Reprovar
+          </Button>
+        </BoxTrip5>
       );
     });
-const candidateApproved = approved && approved.map((cand) => {
+  const candidateApproved =
+    approved &&
+    approved.map((cand) => {
+      return (
+        <BoxTrip5 key={cand.name}>
+          <TituloS>Nome: {cand.name}</TituloS>
+          <p>
+            <strong>Profissão:</strong> {cand.profession}
+          </p>
+          <p>
+            <strong>Idade:</strong> {cand.age} anos
+          </p>
+          <p>
+            <strong>País:</strong> {cand.country}
+          </p>
+          <p>
+            <strong>Texto de Candidatura:</strong> {cand.applicationText}
+          </p>
+        </BoxTrip5>
+      );
+    });
+
   return (
-    <BoxTrip5 key={cand.name}>
-      <h3>Nome: {cand.name}</h3>
-      <p>
-        <strong>Profissão:</strong> {cand.profession}
-      </p>
-      <p>
-        <strong>Idade:</strong> {cand.age} anos
-      </p>
-      <p>
-        <strong>País:</strong> {cand.country}
-      </p>
-      <p>
-        <strong>Texto de Candidatura:</strong> {cand.applicationText}
-      </p>
-  
-    </BoxTrip5>
-  );
+    <ChakraProvider>
+      <Container>
+        <Logo src={labex2} />
+        <Titulo>Viagens Detalhadas</Titulo>
+        <BoxTrip>
+          <TituloS>{tripDetail.name}</TituloS>
+          <p>
+            <strong>Descrição:</strong> {tripDetail.description}
+          </p>
+          <p>
+            <strong>Planeta:</strong> {tripDetail.planet}
+          </p>
+          <p>
+            <strong>Duração:</strong> {tripDetail.durationInDays} dias
+          </p>
+          <p>
+            <strong>Data:</strong> {tripDetail.date}
+          </p>
+        </BoxTrip>
+        <Button
+          colorScheme="blue"
+          color="#ED8936"
+          size="md"
+          variant="outline"
+          onClick={() => {
+            goBack(navigate);
+          }}
+        >
+          {" "}
+          Voltar
+        </Button>
+        <Subtitulo>Candidatos Pendentes</Subtitulo>
+        {infoCandidate && infoCandidate.length > 0 ? (
+          infoCandidate
+        ) : (
+          <p>Não há candidatos para aprovação.</p>
+        )}
 
-})
-
-  return (
-    <Container>
-      <Logo src={labex2} />
-      <h1>Viagens Detalhadas</h1>
-      <BoxTrip>
-        <h2>{tripDetail.name}</h2>
-        <p>
-          <strong>Descrição:</strong> {tripDetail.description}
-        </p>
-        <p>
-          <strong>Planeta:</strong> {tripDetail.planet}
-        </p>
-        <p>
-          <strong>Duração:</strong> {tripDetail.durationInDays} dias
-        </p>
-        <p>
-          <strong>Data:</strong> {tripDetail.date}
-        </p>
-      </BoxTrip>
-      <Button
-        onClick={() => {
-          goBack(navigate);
-        }}
-      >
-        {" "}
-        Voltar
-      </Button>
-      <h2>Candidatos Pendentes</h2>
-      {infoCandidate && infoCandidate.length > 0 ? (
-        infoCandidate
-      ) : (
-        <p>Não há candidatos para aprovação.</p>
-      )}
-
-      <h2> Candidatos Aprovados</h2>
+        <Subtitulo> Candidatos Aprovados</Subtitulo>
 
         {candidateApproved}
-      
-    </Container>
+      </Container>
+    </ChakraProvider>
   );
 }

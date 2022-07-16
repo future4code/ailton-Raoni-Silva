@@ -1,20 +1,21 @@
 import React from "react";
-import { Buttons, Container, Inputs, Button, Logo } from "../Style/Style";
+import { Buttons, Container, Inputs, Logo, Titulo } from "../Style/Style";
 import { useNavigate } from "react-router-dom";
 import { goHome, goToAdminHome } from "../Routes/Coordinator";
 import labex2 from "../img/labex2.png";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLoginAdm } from "../Hooks/useLoginAdm";
-
-
+import { ChakraProvider } from "@chakra-ui/react";
+import { Button, ButtonGroup, Input } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 export default function LoginPage() {
-  useLoginAdm()
+  useLoginAdm();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const toast = useToast();
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -37,38 +38,76 @@ export default function LoginPage() {
         body
       )
       .then((res) => {
-        alert("Bem-vindo(a)!");
         localStorage.setItem("token", res.data.token);
-        goToAdminHome(navigate);
+        toast({
+          title: "Bem Vindo(a).",
+          description: "Login realizado com sucesso.",
+          status: "success",
+          duration: 9000,
+          position: "top",
+          isClosable: true,
+        });
+        setTimeout(() => {
+          goToAdminHome(navigate);
+        }, 2000);
       })
       .catch((err) => {
-        alert("Verifique se seu login ou senha estão corretos.");
+        toast({
+          title: "Acesso negado",
+          description: "Verifique se seu login ou senha estão corretos.",
+          status: "error",
+          duration: 9000,
+          position: "top",
+          isClosable: true,
+        });
       });
   };
 
   return (
-    <div>
-      <Container>
+    <ChakraProvider>
+      <Container w={[400]}>
         <Logo src={labex2} />
-        <h2>Login</h2>
-        <Inputs
+        <Titulo>Login</Titulo>
+        <Input
+          w={[300, 400, 500]}
+          width={510}
           placeholder="E-mail"
           type="email"
           value={email}
           onChange={onChangeEmail}
-        ></Inputs>
-        <Inputs
+        ></Input>
+        <Input
+          w={[300, 400, 500]}
+          width={510}
           placeholder="Senha"
           type="password"
           value={password}
           onChange={onChangePassword}
-        ></Inputs>
+        ></Input>
 
         <Buttons>
-          <Button onClick={() => goHome(navigate)}>Voltar</Button>{" "}
-          <Button onClick={onSubmitLogin}>Entrar</Button>
+          <Button
+            colorScheme="blue"
+            color="#ED8936"
+            size="md"
+            variant="outline"
+            onClick={() => goHome(navigate)}
+          >
+            Voltar
+          </Button>
+          <Button
+            colorScheme="blue"
+            color="#ED8936"
+            size="md"
+            variant="outline"
+            onClick={() => {
+              onSubmitLogin();
+            }}
+          >
+            Entrar
+          </Button>
         </Buttons>
       </Container>
-    </div>
+    </ChakraProvider>
   );
 }
