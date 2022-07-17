@@ -82,6 +82,10 @@ export const BoxTrip2 = styled.div`
   }
   color: #898989;
 `;
+export const Flex = styled.div`
+display: flex;
+
+`
 export const BoxTrip3 = styled.div`
   display: flex;
   flex-direction: column;

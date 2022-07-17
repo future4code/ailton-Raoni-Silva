@@ -6,6 +6,7 @@ import { useRequestData } from "../Hooks/useRequestData";
 import { BASE_URL } from "../Contants/Contants";
 import { useParams } from "react-router-dom";
 import {
+  Flex,
   BoxTrip5,
   BoxTrip3,
   BoxTrip,
@@ -13,7 +14,7 @@ import {
   Logo,
   Titulo,
   Subtitulo,
-  TituloS
+  TituloS,
 } from "../Style/Style";
 import labex2 from "../img/labex2.png";
 import { goBack } from "../Routes/Coordinator";
@@ -26,9 +27,10 @@ export default function TripDetailsPage() {
   useProtectedtPage();
   const navigate = useNavigate();
   const [tripDetail, setTripDetail] = useState([]);
-  const [candidates, setCandidates] = useState([]);
+const [candidates, setCandidates] = useState([]);
   const [approved, setApproved] = useState([]);
   const params = useParams();
+  const [trips, getTripDetails] = useRequestData(`/trip/${params}`)
   const toast = useToast();
 
   useEffect(() => {
@@ -83,7 +85,7 @@ export default function TripDetailsPage() {
               position: "top",
               isClosable: true,
             });
-        tripDetail();
+            getTripDetails(`${BASE_URL}/trip/${id}`)
       })
       .catch((err) => {});
   };
@@ -106,30 +108,34 @@ export default function TripDetailsPage() {
           <p>
             <strong>Texto de Candidatura:</strong> {candidate.applicationText}
           </p>
-          <Button
-            w={40}
-            colorScheme="blue"
-            color="#ED8936"
-            size="md"
-            variant="outline"
-            onClick={() => {
-              decideCandidate(candidate.id, true);
-            }}
-          >
-            Aprovar
-          </Button>{" "}
-          <Button
-            w={40}
-            colorScheme="blue"
-            color="#ED8936"
-            size="md"
-            variant="outline"
-            onClick={() => {
-              decideCandidate(candidate.id, false);
-            }}
-          >
-            Reprovar
-          </Button>
+          <Flex>
+            <Button
+              width={20}
+              margin={1}
+              colorScheme="blue"
+              color="#ED8936"
+              size="md"
+              variant="outline"
+              onClick={() => {
+                decideCandidate(candidate.id, true);
+              }}
+            >
+              Aprovar
+            </Button>{" "}
+            <Button
+              margin={1}
+              width={20}
+              colorScheme="blue"
+              color="#ED8936"
+              size="md"
+              variant="outline"
+              onClick={() => {
+                decideCandidate(candidate.id, false);
+              }}
+            >
+              Reprovar
+            </Button>
+          </Flex>
         </BoxTrip5>
       );
     });

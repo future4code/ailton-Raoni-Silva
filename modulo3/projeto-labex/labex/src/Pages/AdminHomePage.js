@@ -56,7 +56,7 @@ export default function AdminHomePage() {
         getTrip(`${BASE_URL}/raoni/trips`);
       })
       .catch((err) => {
-        console.log("Nao Funcionou", err.response);
+        console.log(err.response);
       });
   };
   function AlertDialogExample({ trip }) {
@@ -111,7 +111,6 @@ export default function AdminHomePage() {
   const tripList =
     trips &&
     trips.map((trip) => {
-      console.log(trip.id);
       return (
         <BoxTrip2 key={trip.id}>
           <BoxTrip4 onClick={() => goToDetailPage(navigate, trip.id)}>

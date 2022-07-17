@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Logo, Buttons, Inputs } from "../Style/Style";
+import { Container, Logo, Buttons, Inputs, Titulo } from "../Style/Style";
 import labex2 from "../img/labex2.png";
 import { useProtectedtPage } from "../Hooks/useProtectedPage";
 import { planets } from "../Contants/Planet";
@@ -60,7 +60,7 @@ export default function CreateTripPage() {
     <ChakraProvider>
       <Container>
         <Logo src={labex2} />
-        <h1>Criar Viagem</h1>
+        <Titulo>Criar Viagem</Titulo>
         <Input
           w={[300, 400, 500]}
           width={510}
