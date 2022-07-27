@@ -37,6 +37,14 @@ export const ContainerInterno = styled.div`
   
 `;
 
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+`;
+
 export const ContainerLogo = styled.div`
   display: flex;
   flex-direction: column;
@@ -77,10 +85,11 @@ export const P = styled.p`
 
 
 export const P2 = styled.p`
-  @font-face {
+   @font-face {
     font-family: "roboto";
     src: url(${roboto});
-    
   }
+  font-family: roboto;
   font-size:11px;
+  text-align: center;
 `;
