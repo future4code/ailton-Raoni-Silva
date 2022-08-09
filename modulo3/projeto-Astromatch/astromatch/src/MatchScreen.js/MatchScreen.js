@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -32,6 +33,7 @@ const ContainerPerfil2 = styled.div`
 
 export default function MatchScreen({ matches }) {
   return (
+
     <PerfilContainer>
       {matches.map((perfil) => {
         return (
@@ -44,5 +46,6 @@ export default function MatchScreen({ matches }) {
         );
       })}
     </PerfilContainer>
-  );
+  )
+  )
 }
