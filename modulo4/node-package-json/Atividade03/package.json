@@ -1,0 +1,12 @@
+{
+  "name": "aula-node3",
+  "version": "1.0.0",
+  "description": "atividade 03",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js"
+  },
+  "author": "Raoni Lobo",
+  "license": "ISC"
+}
