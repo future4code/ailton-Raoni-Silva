@@ -1,8 +1,8 @@
-import { User } from "../types"
+import { userInsert } from "../types"
 import { connection } from "./connection"
 
 const typeUser = (user:any) =>{
-    const createUser: User = {
+    const createUser: userInsert = {
         id: user.id,
         name: user.name,
         email: user.email,
@@ -12,7 +12,7 @@ const typeUser = (user:any) =>{
 }
 
 
-export default async function selectUsers(): Promise<User[] | undefined> {
+export default async function selectUsers(): Promise<userInsert[] | undefined> {
 
     const result = await connection("labecommerce_users")
 
