@@ -12,3 +12,30 @@ Content-Type: application/json
     "password":"356473"
 
 }
+
+###
+
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "Notbook",
+    "price": 3000.10,
+    "image_url":"https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ"
+
+}
+
+###
+
+GET http://localhost:3003/products
+
+###
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+    "userId": "1662072394576",
+    "productId": "1662143814727",
+    "quantity":3
+
+}

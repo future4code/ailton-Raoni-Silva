@@ -4,6 +4,9 @@ import cors from "cors"
 import { AddressInfo } from "net"
 import getAllUsers from "./endpoints/getAllUsers"
 import createUser from "./endpoints/createUser"
+import createProducts from "./endpoints/createProducts"
+import getAllProducts from "./endpoints/getAllProducts"
+import createPurchase from "./endpoints/createPurchase"
 
 
 export const app = express()
@@ -13,6 +16,10 @@ app.use(cors())
 
 app.post("/user", createUser)
 app.get("/users", getAllUsers)
+app.post("/products", createProducts)
+app.get("/products", getAllProducts)
+app.post("/purchases", createPurchase)
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {

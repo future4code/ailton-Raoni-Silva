@@ -1,4 +1,4 @@
-import { userInput, userInsert } from "./../types";
+import { userInput, userInsert } from "../types/typesUser";
 import { Request, Response } from "express";
 import insertUser from "../data/insertUser";
 

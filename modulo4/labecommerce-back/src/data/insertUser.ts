@@ -1,4 +1,4 @@
-import { userInsert } from './../types';
+import { userInsert } from '../types/typesUser';
 import { connection } from './connection';
 
 

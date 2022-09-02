@@ -1,6 +1,4 @@
-import { error } from "console"
 import { Request, Response } from "express"
-import { connection } from "../data/connection"
 import selectUsers from "../data/selectUsers"
 
 
