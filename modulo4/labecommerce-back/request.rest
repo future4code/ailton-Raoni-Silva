@@ -19,8 +19,8 @@ POST http://localhost:3003/products
 Content-Type: application/json
 
 {
-    "name": "Notbook",
-    "price": 3000.10,
+    "name": "Tv Smart",
+    "price": 1000,
     "image_url":"https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ"
 
 }
@@ -35,7 +35,13 @@ Content-Type: application/json
 
 {
     "userId": "1662072394576",
-    "productId": "1662143814727",
-    "quantity":3
+    "productId": "1662150097345",
+    "quantity":2
 
 }
+
+
+###
+
+GET http://localhost:3003/users/1662072394576/purchases
+

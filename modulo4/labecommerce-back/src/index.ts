@@ -7,6 +7,7 @@ import createUser from "./endpoints/createUser"
 import createProducts from "./endpoints/createProducts"
 import getAllProducts from "./endpoints/getAllProducts"
 import createPurchase from "./endpoints/createPurchase"
+import getPurchasesByUser from "./endpoints/getPurchasesByUser"
 
 
 export const app = express()
@@ -19,7 +20,7 @@ app.get("/users", getAllUsers)
 app.post("/products", createProducts)
 app.get("/products", getAllProducts)
 app.post("/purchases", createPurchase)
-
+app.get("/users/:userId/purchases", getPurchasesByUser)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {

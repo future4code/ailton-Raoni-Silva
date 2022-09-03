@@ -13,4 +13,9 @@ export type purchaseData = {
  }
 
 
- 
+ export type AllPurchasesPerson = {
+    IdPuchase: string,
+    ProductName: string,
+    Quantity: number,
+    totalPrice: number
+ }

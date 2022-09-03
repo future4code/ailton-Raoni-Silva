@@ -10,3 +10,8 @@ export type userInsert = {
    email: string,
    password: string
 }
+
+export type userInfo = {
+   idPerson:string,
+   namePerson:string
+}
