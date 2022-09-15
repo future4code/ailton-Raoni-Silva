@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/Generate";
-import { User } from "../types";
+import { User } from "../Model/userTypes";
 
 export default async function login(req: Request, res: Response) {
   try {
@@ -24,10 +24,10 @@ export default async function login(req: Request, res: Response) {
     }
 
     const hashManager = new HashManager();
-    const passwordIsCorrect = hashManager.compare(password, user.getPassword())
-
+    const passwordIsCorrect = await hashManager.compare(password, user.getPassword())
+   
     if(!passwordIsCorrect){
-        res.status(401).send('Email ou senha incorretos.')
+        throw new Error('Email ou senha incorretos.')
     }
     
 

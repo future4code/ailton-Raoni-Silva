@@ -21,13 +21,20 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI2YzgwMTZlLWMwOWQtNGE3ZS05YzA5LWZiZGJjOTIwZGI3ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjMyNjQyMjYsImV4cCI6MTY2MzI2NzgyNn0.hjz1mnl6U8HEisCbhpVSjBJtOV819nAO0T-GXYq6ZBQ
 
 
+###
 
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0YmE0YTUzLTNiMGItNGZjMi04MjNmLTVkYjFkZGEwMDk3YyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjMyNzA4MzgsImV4cCI6MTY2MzI3NDQzOH0.IOP1Z-HYoRj4NFDfKjjrmwAUWtkUqDJGFPajhoXNZh4
 
-
-
-
+{
+   "title": "Comida da Bahia" ,
+   "description": "feijao, arroz, carne e farinha"
+}
 
 
 

@@ -1,4 +1,4 @@
-import { User } from "../types";
+import { User } from "../Model/userTypes";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class UserDatabase extends BaseDatabase {
@@ -26,5 +26,12 @@ export class UserDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   }
+  public getById = async (id: string): Promise<User> => {
+            const result = await this.getConnection()('projeto_cookenu')
+                .where({ id })
+            return result[0] && User.toUserModel(result[0]);
+        }
+
 }
+
 

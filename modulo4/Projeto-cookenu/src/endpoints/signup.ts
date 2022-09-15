@@ -3,16 +3,14 @@ import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/Generate";
-import { User } from "../types";
+import { User } from "../Model/userTypes";
 
 export default async function signup(req: Request, res: Response) {
   try {
     const { name, email, password, role } = req.body;
 
     if (!name || !email || !password || !role) {
-      res
-        .status(422)
-        .send(
+      throw new Error(
           "Preencha corretamente as informações de 'name', 'email', 'password', 'role'!"
         );
     }

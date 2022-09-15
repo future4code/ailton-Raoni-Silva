@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken"
-import { USER_ROLES } from "../types"
+import { USER_ROLES } from "../Model/userTypes"
 
 export interface AuthenticatorData {
     id: string
@@ -20,4 +20,6 @@ export class Authenticator {
         const data = jwt.verify(token, process.env.JWT_KEY as string) as AuthenticatorData
         return data as AuthenticatorData
     }
+
 }
+
