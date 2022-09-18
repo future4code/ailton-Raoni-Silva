@@ -34,8 +34,7 @@ export default async function createRecipe(req:Request, res: Response) {
         await recipeDatabase.createRecipe(recipe)
         
         res.status(201).send({
-            message: "Receita criada com sucesso",
-            recipe 
+            message: "Receita criada com sucesso!",
         })
 
     } catch (error: any) {

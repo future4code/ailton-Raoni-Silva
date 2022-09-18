@@ -37,3 +37,20 @@ export class User {
   }
 }
 
+export interface UserBD {
+  id: string,
+  name: string,
+  email: string
+}
+
+export interface feedDB {
+  id:string,
+  title: string,
+  description:string,
+  createdAt:string,
+  userId: string,
+  userName: string
+}
+
+
+

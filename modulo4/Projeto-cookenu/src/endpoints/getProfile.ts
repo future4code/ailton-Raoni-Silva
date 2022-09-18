@@ -1,7 +1,7 @@
 import { UserDatabase } from "./../data/UserDatabase";
 import { Authenticator } from "./../services/Authenticator";
 import { Request, Response } from "express";
-import { User } from "../Model/userTypes";
+import  {User} from "../Model/userTypes";
 
 export default async function getProfile(req: Request, res: Response) {
   try {
@@ -18,9 +18,7 @@ export default async function getProfile(req: Request, res: Response) {
     const user = await userDatabase.getById(data.id);
 
     res.send({
-      id: user?.getId(),
-      name: user?.getName(),
-      email: user?.getEmail(),
+      user
     });
   } catch (error: any) {
     res.status(400).send(error.message);

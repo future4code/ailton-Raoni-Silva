@@ -3,7 +3,6 @@ export interface RecipeData {
   title: string;
   description: string;
   created_at: Date;
-  updated_at: Date;
   creator_id: string;
 }
 
@@ -34,6 +33,9 @@ export class Recipe {
 
   public getCreatorId = () => {
     return this.creatorId
+}
+setData(data:any){
+this.created = data
 }
   static toUserModel(data: any): Recipe {
     return new Recipe(data.id, data.title, data.description, data.created, data.creatorId);
