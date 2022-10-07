@@ -1,0 +1,47 @@
+GET http://localhost:3003/users
+
+
+###
+
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name": "Lara",
+    "email": "lara@lara.com",
+    "password":"356473"
+
+}
+
+###
+
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "Tv Smart",
+    "price": 1000,
+    "image_url":"https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ"
+
+}
+
+###
+
+GET http://localhost:3003/products
+
+###
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+    "userId": "1662072394576",
+    "productId": "1662150097345",
+    "quantity":2
+
+}
+
+
+###
+
+GET http://localhost:3003/users/1662072394576/purchases
+
